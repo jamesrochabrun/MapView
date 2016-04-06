@@ -149,30 +149,51 @@ class ViewController: UIViewController,MKMapViewDelegate,UITableViewDelegate,UIT
         return pinView!
     }
     
-//this is the sguew fom the i button
-    
 
-    
-
+    //fix for create a segue form the i button, also we need to dra the donut fromm the VC to the other vC
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        self.performSegueWithIdentifier("Detail", sender: view)
+        self.performSegueWithIdentifier("DetailFromMap", sender: view)
     }
     
+    
+    
+    //toggle between segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        
+        if segue.identifier == "DetailFromMap" {
         
         let destVC = segue.destinationViewController as! DetailViewController
         
         let pin = sender as! MKAnnotationView
         
-        let clickeBusStopLongitudeDegrees = pin.annotation!.coordinate.longitude
+        let clickedBusStopLongitudeDegrees = pin.annotation!.coordinate.longitude
         
-        let clickedLongitudeString = "\(clickeBusStopLongitudeDegrees)"
+        let clickedLongitudeString = "\(clickedBusStopLongitudeDegrees)"
         
         for busStop in busStops {
             if ((busStop["longitude"]?.isEqual(clickedLongitudeString)) != nil)  {
                 destVC.busStop = busStop
             }
+        }//fin for loop
+            
+         destVC.isMapDetail = true
         }
+        else{
+            
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPathForCell(cell)
+            
+            let busStop = self.busStops[indexPath!.row]
+
+            let destVC = segue.destinationViewController as! DetailViewController
+            
+            //passing the dictionary to the next VC 
+            destVC.busStop = busStop
+            destVC.isMapDetail = false
+
+        }
+        
     }
     
 
