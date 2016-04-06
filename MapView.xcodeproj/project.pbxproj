@@ -16,6 +16,7 @@
 		7B27E0AD1CB47181006050B5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B27E0AC1CB47181006050B5 /* MapKit.framework */; };
 		7B27E0AF1CB4826B006050B5 /* bus.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B27E0AE1CB4826B006050B5 /* bus.json */; };
 		7B27E0B11CB4A29B006050B5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B27E0B01CB4A29B006050B5 /* DetailViewController.swift */; };
+		7B27E0B31CB4E65D006050B5 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B27E0B21CB4E65D006050B5 /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		7B27E0AC1CB47181006050B5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7B27E0AE1CB4826B006050B5 /* bus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bus.json; sourceTree = "<group>"; };
 		7B27E0B01CB4A29B006050B5 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		7B27E0B21CB4E65D006050B5 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				7B27E0971CB46EE1006050B5 /* AppDelegate.swift */,
 				7B27E0991CB46EE1006050B5 /* ViewController.swift */,
 				7B27E09B1CB46EE1006050B5 /* Main.storyboard */,
+				7B27E0B21CB4E65D006050B5 /* WebViewController.swift */,
 				7B27E0B01CB4A29B006050B5 /* DetailViewController.swift */,
 				7B27E0A11CB46EE1006050B5 /* Assets.xcassets */,
 				7B27E0A31CB46EE1006050B5 /* LaunchScreen.storyboard */,
@@ -152,6 +155,7 @@
 				7B27E0A01CB46EE1006050B5 /* MapView.xcdatamodeld in Sources */,
 				7B27E09A1CB46EE1006050B5 /* ViewController.swift in Sources */,
 				7B27E0981CB46EE1006050B5 /* AppDelegate.swift in Sources */,
+				7B27E0B31CB4E65D006050B5 /* WebViewController.swift in Sources */,
 				7B27E0B11CB4A29B006050B5 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +304,7 @@
 				7B27E0AB1CB46EE1006050B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

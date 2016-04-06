@@ -272,6 +272,9 @@
                                         <include reference="QTr-fE-UdC"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <segue destination="AEJ-jO-4ya" kind="presentation" id="4I5-r9-9bb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -380,6 +383,100 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vKm-Zx-I0F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1878" y="273"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="PvX-aU-2lO">
+            <objects>
+                <viewController id="AEJ-jO-4ya" customClass="WebViewController" customModule="MapView" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pqm-Vb-nXN"/>
+                        <viewControllerLayoutGuide type="bottom" id="xBD-yw-vTb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GpS-6I-Duw">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3qG-Ht-ZN2">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="AEJ-jO-4ya" id="aYG-WQ-kwr"/>
+                                </connections>
+                            </webView>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="Re9-9L-Htc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Pem-VT-6py"/>
+                                </constraints>
+                                <color key="barTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="Title" id="LZL-2V-Zw2">
+                                        <barButtonItem key="rightBarButtonItem" title="Dismiss" id="MVe-qi-7wF">
+                                            <connections>
+                                                <action selector="dismissButton:" destination="AEJ-jO-4ya" id="eRP-eP-82e"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Pem-VT-6py"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Pem-VT-6py"/>
+                                    </mask>
+                                </variation>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="3qG-Ht-ZN2" secondAttribute="trailing" constant="-20" id="0mG-Zp-hfq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Re9-9L-Htc" secondAttribute="trailing" constant="-20" id="LO0-YC-4Ca"/>
+                            <constraint firstItem="xBD-yw-vTb" firstAttribute="top" secondItem="3qG-Ht-ZN2" secondAttribute="bottom" id="Mil-Sc-9p5"/>
+                            <constraint firstItem="Re9-9L-Htc" firstAttribute="leading" secondItem="GpS-6I-Duw" secondAttribute="leadingMargin" constant="-20" id="Rqf-iI-hE0"/>
+                            <constraint firstItem="Re9-9L-Htc" firstAttribute="top" secondItem="GpS-6I-Duw" secondAttribute="topMargin" id="gXq-nG-cuI"/>
+                            <constraint firstItem="3qG-Ht-ZN2" firstAttribute="top" secondItem="GpS-6I-Duw" secondAttribute="topMargin" id="oft-Kb-dna"/>
+                            <constraint firstItem="3qG-Ht-ZN2" firstAttribute="leading" secondItem="GpS-6I-Duw" secondAttribute="leadingMargin" constant="-20" id="tzL-9H-pmp"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="3qG-Ht-ZN2"/>
+                                <exclude reference="Re9-9L-Htc"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="0mG-Zp-hfq"/>
+                                <exclude reference="oft-Kb-dna"/>
+                                <exclude reference="tzL-9H-pmp"/>
+                                <exclude reference="LO0-YC-4Ca"/>
+                                <exclude reference="Rqf-iI-hE0"/>
+                                <exclude reference="gXq-nG-cuI"/>
+                                <exclude reference="Mil-Sc-9p5"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="3qG-Ht-ZN2"/>
+                                <include reference="Re9-9L-Htc"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="0mG-Zp-hfq"/>
+                                <include reference="oft-Kb-dna"/>
+                                <include reference="tzL-9H-pmp"/>
+                                <include reference="LO0-YC-4Ca"/>
+                                <include reference="Rqf-iI-hE0"/>
+                                <include reference="gXq-nG-cuI"/>
+                                <include reference="Mil-Sc-9p5"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="3qG-Ht-ZN2" id="j36-Yd-UPz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ei6-xM-Mss" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2631" y="273"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Qy-vx-m6j">

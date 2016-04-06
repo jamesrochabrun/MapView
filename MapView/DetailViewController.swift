@@ -52,7 +52,16 @@ class DetailViewController: UIViewController {
     }
     
     
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
+        let webVc = segue.destinationViewController as? WebViewController
+        
+        let url = self.busStop.objectForKey("_address") as! String
+        
+        webVc?.url = url
+        
+    }
     
     
     
