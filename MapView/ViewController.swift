@@ -17,6 +17,8 @@ class ViewController: UIViewController,MKMapViewDelegate,UITableViewDelegate,UIT
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var segmentedControlBar: UISegmentedControl!
     var busAnotation  = MKPointAnnotation()
+    //allows to know where the user is
+    let locationManager = CLLocationManager()
     
 
     override func viewDidLoad() {
@@ -60,6 +62,7 @@ class ViewController: UIViewController,MKMapViewDelegate,UITableViewDelegate,UIT
                         annotation.title = busStop.objectForKey("cta_stop_name") as? String
                         annotation.subtitle = busStop.objectForKey("routes") as? String
                         
+                        
                         //this adds the anotations to the map
                         self.mapView.addAnnotation(annotation)
                         
@@ -79,6 +82,13 @@ class ViewController: UIViewController,MKMapViewDelegate,UITableViewDelegate,UIT
         
         //this is for the zoom
         self.zoomMap()
+        
+        //user Privacy
+        self.locationManager.requestWhenInUseAuthorization()
+        mapView.showsUserLocation = true
+        
+        //changing the color of the annotation button
+        mapView.tintColor = UIColor.brownColor()
     }
 
     @IBAction func segmentedControlTapped(sender: UISegmentedControl) {
@@ -101,13 +111,14 @@ class ViewController: UIViewController,MKMapViewDelegate,UITableViewDelegate,UIT
     //making the zoom
     func zoomMap()
     {
-        let span = MKCoordinateSpanMake(0.75, 0.75)
+        let span = MKCoordinateSpanMake(1, 1)
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 41.8339042, longitude: -88.0123418), span: span)
         mapView.setRegion(region, animated: true)
         
     }
 
-
+//tableView
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("CellId")! as UITableViewCell
@@ -117,6 +128,15 @@ class ViewController: UIViewController,MKMapViewDelegate,UITableViewDelegate,UIT
         cell.textLabel?.text = busStop["cta_stop_name"] as? String
         
         cell.detailTextLabel!.text = busStop["routes"] as? String
+        
+        if(busStop["inter_modal"] as? String) == "Pace"
+        {
+            cell.imageView?.image = UIImage(named: "smallBus")
+        } else if (busStop["inter_modal"] as? String) == "Pace" {
+            cell.imageView?.image = UIImage(named: "otherpic")
+        }
+        
+        
         
         return cell
         
@@ -128,36 +148,37 @@ class ViewController: UIViewController,MKMapViewDelegate,UITableViewDelegate,UIT
     
     
     func mapView(mapView: MKMapView,viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        //userlocation
         if annotation is MKUserLocation{
             return nil
         }
         
-        let reuseId = "pin"
-        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
         
-        if(pinView == nil){
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.canShowCallout = true
-            pinView!.animatesDrop = true
-            //pinView!.pinTintColor = .Red
-            
+           let pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
+            pinView.image = UIImage(named:"smallBus")
+            pinView.canShowCallout = true
+//            pinView.animatesDrop = true
+//            pinView.pinColor = .Green
+        
             let calloutButton = UIButton(type: .DetailDisclosure) as UIButton
-            pinView!.rightCalloutAccessoryView = calloutButton
-        } else {
-            pinView!.annotation = annotation
-        }
-        return pinView!
+            pinView.rightCalloutAccessoryView = calloutButton
+
+    
+        return pinView
     }
     
+    
 
-    //fix for create a segue form the i button, also we need to dra the donut fromm the VC to the other vC
+    //fix for create a segue form the i button, also we need to drag the donut fromm the VC to the other vC
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         self.performSegueWithIdentifier("DetailFromMap", sender: view)
     }
     
     
     
-    //toggle between segues
+//toggle between segues to destination from tableview and from mapView
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         
@@ -166,14 +187,19 @@ class ViewController: UIViewController,MKMapViewDelegate,UITableViewDelegate,UIT
         let destVC = segue.destinationViewController as! DetailViewController
         
         let pin = sender as! MKAnnotationView
-        
+            
         let clickedBusStopLongitudeDegrees = pin.annotation!.coordinate.longitude
+            
+        let clickedBusStopLatitudeDegrees = pin.annotation!.coordinate.latitude
+
+        let clickedLatitudeString = "\(clickedBusStopLatitudeDegrees)"
         
         let clickedLongitudeString = "\(clickedBusStopLongitudeDegrees)"
         
         for busStop in busStops {
-            if ((busStop["longitude"]?.isEqual(clickedLongitudeString)) != nil)  {
+            if (busStop["longitude"] as! String == clickedLongitudeString && busStop["latitude"] as! String ==  clickedLatitudeString)  {
                 destVC.busStop = busStop
+//                print(destVC.busStop)
             }
         }//fin for loop
             

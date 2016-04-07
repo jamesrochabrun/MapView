@@ -12,12 +12,14 @@ class WebViewController: UIViewController,UIWebViewDelegate {
     
     var busStop = NSDictionary()
     var url = NSString()
+    var name = NSString()
 
     @IBOutlet weak var webView: UIWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = self.name as String
         let url = NSURL (string:self.url as String)
         let request = NSURLRequest(URL: url!)
         self.webView.loadRequest(request)

@@ -68,8 +68,8 @@
 			isa = PBXGroup;
 			children = (
 				7B27E0971CB46EE1006050B5 /* AppDelegate.swift */,
-				7B27E0991CB46EE1006050B5 /* ViewController.swift */,
 				7B27E09B1CB46EE1006050B5 /* Main.storyboard */,
+				7B27E0991CB46EE1006050B5 /* ViewController.swift */,
 				7B27E0B21CB4E65D006050B5 /* WebViewController.swift */,
 				7B27E0B01CB4A29B006050B5 /* DetailViewController.swift */,
 				7B27E0A11CB46EE1006050B5 /* Assets.xcassets */,
@@ -112,6 +112,7 @@
 				TargetAttributes = {
 					7B27E0931CB46EE1006050B5 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 2E2EPPUR37;
 					};
 				};
 			};
@@ -267,10 +268,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MapView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yo.MapView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -278,10 +283,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MapView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yo.MapView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -48,7 +48,11 @@ class DetailViewController: UIViewController {
     
     func setValuesFromMapSegue()
     {
-         print(busStop)
+        title = busStop.objectForKey("cta_stop_name") as? String
+        self.labelA.text = busStop["stop_id"] as? String
+        self.labelB.text = busStop["routes"] as? String
+        self.labelC.text = busStop["longitude"] as? String
+        self.labelD.text = busStop["latitude"] as? String
     }
     
     
@@ -59,7 +63,16 @@ class DetailViewController: UIViewController {
         
         let url = self.busStop.objectForKey("_address") as! String
         
+        let name = self.busStop.objectForKey("cta_stop_name") as! String
+        
+        print(url)
+        
+        //passing the url
         webVc?.url = url
+        
+        //passing the name
+        webVc!.name = name
+        
         
     }
     
